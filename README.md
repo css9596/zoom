@@ -1,3 +1,3 @@
 # Noom
 
-Zoom CLonew using WebRTC and Websockets.
+Zoom Clone coding using WebRTC and Websockets.
