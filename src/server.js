@@ -1,6 +1,7 @@
 import http from "http";
-import WebSocket from "ws";
+//import WebSocket from "ws";
 import express from "express";
+import SocketIO from "socket.io"
 
 const app = express();
 
@@ -10,13 +11,16 @@ app.use("/public", express.static(__dirname + "/public"));
 app.get("/", (req, res) => res.render("home"));
 app.get("/*", (req,res) => res.redirect("/"));
 
-const handleListen = () => console.log(`Listening on http://localhost:3000`);
+const httpServer = http.createServer(app);  // http Server
+const wsServer = SocketIO(httpServer);
 
-const server = http.createServer(app);  // http Server
+wsServer.on("connection", socket => {
+    console.log(socket);
+});
 
-const sockets = [];
-
+/*
 const wss = new WebSocket.Server({server}); //WebSocket Server
+const sockets = [];
 
 wss.on("connection", (socket) => {
     sockets.push(socket);
@@ -36,5 +40,7 @@ wss.on("connection", (socket) => {
     });
     socket.on("close", () => console.log("Disconnected from the Browser"));
 });
+*/
 
-server.listen(3000, handleListen);
+const handleListen = () => console.log(`Listening on http://localhost:3000`);
+httpServer.listen(3000, handleListen);

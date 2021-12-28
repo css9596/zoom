@@ -10,12 +10,5 @@ html(lang="en")
         header
             h1 Noom
         main
-            form#nick
-                input(type="text", placeholder="닉네임을 선택해주세요.", required)
-                button 닉네임 저장
-            ul
-            form#message
-                input(type="text", placeholder="메시지를 입력 해 주세요.", required)
-                button 보내기
-
+        script(src="/socket.io/socket.io.js")
         script(src="/public/js/app.js")
